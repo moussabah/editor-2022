@@ -1,6 +1,13 @@
 package fr.istic.aco.editor;
 
 public class EngineImpl implements Engine {
+
+    // The buffer
+    StringBuilder buffer = new StringBuilder();
+
+    String clipboard;
+    Selection selection = new SelectionImpl(buffer);    //ask for question if it's correct
+
     /**
      * Provides access to the selection control object
      *
@@ -8,8 +15,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public Selection getSelection() {
-        // TODO
-        return null;
+        return selection;
     }
 
     /**
@@ -19,8 +25,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public String getBufferContents() {
-        // TODO
-        return null;
+        return buffer.toString();
     }
 
     /**
@@ -30,8 +35,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public String getClipboardContents() {
-        // TODO
-        return null;
+        return clipboard.toString();
     }
 
     /**
@@ -41,7 +45,9 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void cutSelectedText() {
-        // TODO
+        copySelectedText();
+        delete();
+
     }
 
     /**
@@ -51,7 +57,9 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void copySelectedText() {
-        // TODO
+        int begin = getSelection().getBeginIndex();
+        int end = getSelection().getEndIndex();
+        clipboard = buffer.substring(begin, end);
     }
 
     /**
@@ -60,7 +68,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void pasteClipboard() {
-        // TODO
+        this.insert(clipboard);
     }
 
     /**
@@ -70,7 +78,10 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void insert(String s) {
-
+        int begin = getSelection().getBeginIndex();
+        int end = getSelection().getEndIndex();
+        buffer.replace(begin, end, s);  //Pb: Si y a rien a cet endroit.
+        selection.setEndIndex(begin);
     }
 
     /**
@@ -78,6 +89,9 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void delete() {
-
+        int begin = getSelection().getBeginIndex();
+        int end = getSelection().getEndIndex();
+        buffer.delete(begin, end);
+        selection.setEndIndex(begin);
     }
 }
