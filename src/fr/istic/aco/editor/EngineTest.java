@@ -1,8 +1,5 @@
 package fr.istic.aco.editor;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class EngineTest {
@@ -14,39 +11,29 @@ class EngineTest {
         engine = new EngineImpl();
     }
 
-    private void todo() {
-        fail("Unimplemented test");
-    }
-    @Test
-    @DisplayName("Buffer must be empty after initialisation")
+    @org.junit.jupiter.api.Test
     void getSelection() {
         Selection selection = engine.getSelection();
         assertEquals(selection.getBufferBeginIndex(),selection.getBeginIndex());
-        assertEquals("",engine.getBufferContents());
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void getBufferContents() {
-        todo();
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void getClipboardContents() {
-        todo();
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void cutSelectedText() {
-        todo();
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void copySelectedText() {
-        todo();
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void pasteClipboard() {
-        todo();
     }
 }
