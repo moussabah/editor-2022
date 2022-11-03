@@ -81,7 +81,8 @@ public class EngineImpl implements Engine {
         int begin = getSelection().getBeginIndex();
         int end = getSelection().getEndIndex();
         buffer.replace(begin, end, s);  //Pb: Si y a rien a cet endroit.
-        selection.setEndIndex(begin);
+        selection.setEndIndex(begin+s.length());
+        selection.setBeginIndex(selection.getEndIndex());
     }
 
     /**
@@ -92,6 +93,7 @@ public class EngineImpl implements Engine {
         int begin = getSelection().getBeginIndex();
         int end = getSelection().getEndIndex();
         buffer.delete(begin, end);
-        selection.setEndIndex(begin);
+        selection.setEndIndex(selection.getBeginIndex());
+
     }
 }

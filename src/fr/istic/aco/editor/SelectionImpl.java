@@ -9,6 +9,8 @@ public class SelectionImpl implements Selection {
 
     public SelectionImpl(StringBuilder buffer){
         this.buffer = buffer;
+        this.beginIndex = 0;
+        this.endIndex = 0;
     }
     /**
      * Provides the index of the first character designated
@@ -61,6 +63,10 @@ public class SelectionImpl implements Selection {
      */
     @Override
     public void setBeginIndex(int beginIndex) {
+        if (beginIndex<0 || beginIndex> endIndex )
+        {
+            throw  new IndexOutOfBoundsException();
+        }
 
         this.beginIndex = beginIndex;
     }
@@ -72,6 +78,10 @@ public class SelectionImpl implements Selection {
      */
     @Override
     public void setEndIndex(int endIndex) {
+        if (endIndex<beginIndex  || endIndex> buffer.length() )
+        {
+            throw  new IndexOutOfBoundsException();
+        }
         this.endIndex = endIndex;
     }
 }
