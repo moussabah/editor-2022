@@ -1,4 +1,4 @@
-package fr.istic.aco.editor;
+package fr.istic.aco.editor.V1;
 
 /**
  * Provides access to selection control operations
@@ -14,7 +14,7 @@ public interface Selection {
      *
      * @return
      */
-    int getBeginIndex();
+     int getBeginIndex();
 
     /**
      * Provides the index of the first character

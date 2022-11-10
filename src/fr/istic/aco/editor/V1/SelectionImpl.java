@@ -1,4 +1,6 @@
-package fr.istic.aco.editor;
+package fr.istic.aco.editor.V1;
+
+import fr.istic.aco.editor.V1.Selection;
 
 public class SelectionImpl implements Selection {
 
@@ -11,6 +13,7 @@ public class SelectionImpl implements Selection {
         this.buffer = buffer;
         this.beginIndex = 0;
         this.endIndex = 0;
+        this.buffer_begin_integer=0;
     }
     /**
      * Provides the index of the first character designated

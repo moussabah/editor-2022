@@ -1,4 +1,4 @@
-package fr.istic.aco.editor;
+package fr.istic.aco.editor.V1;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,16 +24,13 @@ class EngineTest {
         assertEquals("",engine.getBufferContents());
     }
 
-
     @Test
     @DisplayName("Check getBufferContents method ")
     void getBufferContents() {
         assertEquals("", engine.getBufferContents());
         engine.insert("ABCDEF");
         assertEquals("ABCDEF", engine.getBufferContents());
-
     }
-
     @Test
     @DisplayName("Check getClipboardContents method")
     void getClipboardContents() {
@@ -46,7 +43,6 @@ class EngineTest {
         assertEquals("ABC", engine.getClipboardContents());
 
     }
-
     @Test
     @DisplayName("Check cutSelectedText")
     void cutSelectedText() {
@@ -57,8 +53,8 @@ class EngineTest {
         engine.cutSelectedText();
         assertEquals("ABC", engine.getClipboardContents());
         assertEquals("DEF", engine.getBufferContents());
+        assertEquals(selection.getEndIndex(),selection.getBeginIndex());
     }
-
     @Test
     @DisplayName("copySelectedText method")
     void copySelectedText() {
@@ -69,7 +65,6 @@ class EngineTest {
         engine.copySelectedText();
         assertEquals("ABC", engine.getClipboardContents());
     }
-
     @Test
     @DisplayName("Check pasteClipboard method")
 
@@ -82,4 +77,20 @@ class EngineTest {
         engine.pasteClipboard();
         assertEquals("ABC", engine.getClipboardContents());
     }
+
+    @Test
+    @DisplayName("Check Insert method")
+
+    void Insert() {
+        int oldBeginIndex=engine.getSelection().getBeginIndex();
+        String str = "ABCDEF";
+        engine.insert(str);
+        assertEquals(engine.getSelection().getBeginIndex(), engine.getSelection().getEndIndex()); //On a plus de séléction
+        assertEquals(engine.getSelection().getBeginIndex(),oldBeginIndex+ str.length());
+        assertEquals("ABCDEF", engine.getBufferContents());
+
+    }
+
+
+
 }
