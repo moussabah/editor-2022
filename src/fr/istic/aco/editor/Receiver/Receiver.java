@@ -1,4 +1,4 @@
-package Receiver;
+package fr.istic.aco.editor.Receiver;
 
 import java.util.logging.Logger;
 
