@@ -1,6 +1,6 @@
-package Command;
+package fr.istic.aco.editor.Command;
 
-import fr.istic.aco.editor.Engine;
+import fr.istic.aco.editor.enginecore.Engine;
 
 public class Delete implements Command {
 

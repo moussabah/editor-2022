@@ -1,5 +1,8 @@
-package fr.istic.aco.editor.V1;
+package fr.istic.aco.editor.test;
 
+import fr.istic.aco.editor.enginecore.Engine;
+import fr.istic.aco.editor.enginecore.EngineImpl;
+import fr.istic.aco.editor.enginecore.Selection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

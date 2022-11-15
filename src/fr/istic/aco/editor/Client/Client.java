@@ -1,4 +1,4 @@
-package Client;
+package fr.istic.aco.editor.Client;
 
 
 //Le receiver sera l'engine

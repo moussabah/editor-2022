@@ -1,4 +1,4 @@
-package fr.istic.aco.editor.V1;
+package fr.istic.aco.editor.enginecore;
 
 /**
  * Provides access to selection control operations

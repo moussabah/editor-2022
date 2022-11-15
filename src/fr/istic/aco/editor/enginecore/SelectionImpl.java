@@ -1,6 +1,4 @@
-package fr.istic.aco.editor.V1;
-
-import fr.istic.aco.editor.V1.Selection;
+package fr.istic.aco.editor.enginecore;
 
 public class SelectionImpl implements Selection {
 
