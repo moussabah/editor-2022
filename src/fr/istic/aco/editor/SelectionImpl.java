@@ -61,7 +61,6 @@ public class SelectionImpl implements Selection {
      */
     @Override
     public void setBeginIndex(int beginIndex) {
-
         this.beginIndex = beginIndex;
     }
 

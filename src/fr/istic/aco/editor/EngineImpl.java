@@ -8,6 +8,12 @@ public class EngineImpl implements Engine {
     String clipboard;
     Selection selection = new SelectionImpl(buffer);    //ask for question if it's correct
 
+    public EngineImpl(String s){
+        this.buffer.append(s);
+    }
+
+    public EngineImpl(){
+    }
     /**
      * Provides access to the selection control object
      *
@@ -81,7 +87,8 @@ public class EngineImpl implements Engine {
         int begin = getSelection().getBeginIndex();
         int end = getSelection().getEndIndex();
         buffer.replace(begin, end, s);  //Pb: Si y a rien a cet endroit.
-        selection.setEndIndex(begin);
+        selection.setEndIndex(begin+s.length());
+        selection.setBeginIndex(end);
     }
 
     /**
