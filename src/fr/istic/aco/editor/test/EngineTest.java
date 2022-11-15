@@ -91,9 +91,15 @@ class EngineTest {
         assertEquals(engine.getSelection().getBeginIndex(), engine.getSelection().getEndIndex()); //On a plus de séléction
         assertEquals(engine.getSelection().getBeginIndex(),oldBeginIndex+ str.length());
         assertEquals("ABCDEF", engine.getBufferContents());
-
     }
-
-
-
+    @Test
+    @DisplayName("Check Insert method")
+    void InsertEmptyString()
+    { this.engine.insert("ABCDEF");
+        Selection selection = engine.getSelection();
+        selection.setBeginIndex(0);
+        selection.setEndIndex(3);
+        assertEquals(0, engine.getClipboardContents().length());
+        this.engine.insert("");
+    }
 }

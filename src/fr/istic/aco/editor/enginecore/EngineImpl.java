@@ -3,10 +3,10 @@ package fr.istic.aco.editor.enginecore;
 public class EngineImpl implements Engine {
 
     // The buffer
-    StringBuilder buffer = new StringBuilder();
+    private StringBuilder buffer = new StringBuilder();
 
-    String clipboard;
-    Selection selection = new SelectionImpl(buffer);    //ask for question if it's correct
+    private String clipboard="";
+    private Selection selection = new SelectionImpl(buffer);    //ask for question if it's correct
 
     /**
      * Provides access to the selection control object

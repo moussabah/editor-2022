@@ -2,16 +2,18 @@ package fr.istic.aco.editor.enginecore;
 
 public class SelectionImpl implements Selection {
 
-    StringBuilder buffer;
-    Integer beginIndex;
-    Integer endIndex;
-    Integer buffer_begin_integer;
+    private StringBuilder buffer;
+    private Integer beginIndex;
+    private Integer endIndex;
+
+    //Index du debut du buffer
+    private Integer buffer_begin_index;
 
     public SelectionImpl(StringBuilder buffer){
         this.buffer = buffer;
         this.beginIndex = 0;
         this.endIndex = 0;
-        this.buffer_begin_integer=0;
+        this.buffer_begin_index=0;
     }
     /**
      * Provides the index of the first character designated
@@ -43,7 +45,7 @@ public class SelectionImpl implements Selection {
      */
     @Override
     public int getBufferBeginIndex() {
-        return this.buffer_begin_integer;
+        return this.buffer_begin_index;
     }
 
     /**
