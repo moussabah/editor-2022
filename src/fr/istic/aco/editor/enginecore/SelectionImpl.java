@@ -3,10 +3,14 @@ package fr.istic.aco.editor.enginecore;
 public class SelectionImpl implements Selection {
 
     private StringBuilder buffer;
+
+    //The index of the first element of the selection
     private Integer beginIndex;
+
+    //The index of the first element of the selection
     private Integer endIndex;
 
-    //Index du debut du buffer
+    //Index of the buffer beginning
     private Integer buffer_begin_index;
 
     public SelectionImpl(StringBuilder buffer){

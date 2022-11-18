@@ -15,7 +15,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public Selection getSelection() {
-        return selection;
+        return this.selection;
     }
 
     /**
@@ -25,7 +25,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public String getBufferContents() {
-        return buffer.toString();
+        return this.buffer.toString();
     }
 
     /**
@@ -47,7 +47,6 @@ public class EngineImpl implements Engine {
     public void cutSelectedText() {
         copySelectedText();
         delete();
-
     }
 
     /**
@@ -94,6 +93,5 @@ public class EngineImpl implements Engine {
         int end = getSelection().getEndIndex();
         buffer.delete(begin, end);
         selection.setEndIndex(selection.getBeginIndex());
-
     }
 }

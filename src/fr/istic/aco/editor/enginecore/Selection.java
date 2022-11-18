@@ -55,6 +55,4 @@ public interface Selection {
      * @throws IndexOutOfBoundsException if the beginIndex is out of bounds
      */
     void setEndIndex(int endIndex);
-
-
 }

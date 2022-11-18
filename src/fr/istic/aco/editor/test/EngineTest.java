@@ -37,14 +37,12 @@ class EngineTest {
     @Test
     @DisplayName("Check getClipboardContents method")
     void getClipboardContents() {
-
         engine.insert("ABCDEF");
         Selection selection = engine.getSelection();
         selection.setBeginIndex(0);
         selection.setEndIndex(3);
         engine.copySelectedText();
         assertEquals("ABC", engine.getClipboardContents());
-
     }
     @Test
     @DisplayName("Check cutSelectedText")
@@ -83,7 +81,6 @@ class EngineTest {
 
     @Test
     @DisplayName("Check Insert method")
-
     void Insert() {
         int oldBeginIndex=engine.getSelection().getBeginIndex();
         String str = "ABCDEF";
@@ -93,7 +90,7 @@ class EngineTest {
         assertEquals("ABCDEF", engine.getBufferContents());
     }
     @Test
-    @DisplayName("Check Insert method")
+    @DisplayName("Check Insert method : an empty String insertion")
     void InsertEmptyString()
     { this.engine.insert("ABCDEF");
         Selection selection = engine.getSelection();
