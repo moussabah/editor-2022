@@ -1,6 +1,6 @@
-package fr.istic.aco.editor.Command;
+package fr.istic.aco.editor.command;
 
-import fr.istic.aco.editor.Client.Client;
+import fr.istic.aco.editor.invoker.Invoker;
 import fr.istic.aco.editor.enginecore.Engine;
 
 public class Delete implements Command {
@@ -8,7 +8,7 @@ public class Delete implements Command {
     // The receiver
     private Engine engine;
     // The Invoker
-    private Client client;
+    private Invoker invoker;
 
     public Delete(Engine engine) {
         this.engine = engine;
@@ -19,8 +19,6 @@ public class Delete implements Command {
      */
     @Override
     public void execute() {
-        engine.getSelection().setBeginIndex(client.getBeginIndex());
-        engine.getSelection().setEndIndex(client.getEndIndex());
         engine.delete();
     }
 }

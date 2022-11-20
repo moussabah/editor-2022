@@ -1,19 +1,18 @@
-package fr.istic.aco.editor.Command;
+package fr.istic.aco.editor.command;
 
-import fr.istic.aco.editor.Client.Client;
+import fr.istic.aco.editor.invoker.Invoker;
 import fr.istic.aco.editor.enginecore.Engine;
-import fr.istic.aco.editor.enginecore.EngineImpl;
 
 public class CopySelectedText implements Command{
 
     // The receiver
     private Engine engine;
     // The Invoker
-    private Client client;
+    private Invoker invoker;
 
-    public CopySelectedText(Engine engine, Client client){
+    public CopySelectedText(Engine engine, Invoker invoker){
         this.engine = engine;
-        this.client = client;
+        this.invoker = invoker;
     }
 
     /** The run method of the concrete command CopySelectedText
@@ -21,8 +20,6 @@ public class CopySelectedText implements Command{
      */
     @Override
     public void execute() {
-        engine.getSelection().setBeginIndex(client.getBeginIndex());
-        engine.getSelection().setEndIndex(client.getEndIndex());
         engine.copySelectedText();
     }
 }

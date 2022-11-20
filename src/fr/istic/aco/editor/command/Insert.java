@@ -1,19 +1,18 @@
-package fr.istic.aco.editor.Command;
+package fr.istic.aco.editor.command;
 
-import fr.istic.aco.editor.Client.Client;
+import fr.istic.aco.editor.invoker.Invoker;
 import fr.istic.aco.editor.enginecore.Engine;
-import fr.istic.aco.editor.enginecore.EngineImpl;
 
 public class Insert implements Command {
 
     // The receiver
     private Engine engine;
     // The Invoker
-    private Client client;
+    private Invoker invoker;
 
-    public Insert(Engine engine, Client client) {
+    public Insert(Engine engine, Invoker invoker) {
         this.engine = engine;
-        this.client = client;
+        this.invoker = invoker;
     }
 
     /** The run method of the concrete command Insert
@@ -21,6 +20,6 @@ public class Insert implements Command {
      */
     @Override
     public void execute() {
-        engine.insert(client.getText());
+        engine.insert(invoker.getText());
     }
 }

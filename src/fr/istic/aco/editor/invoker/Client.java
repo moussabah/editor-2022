@@ -39,6 +39,7 @@ public class Client implements Invoker {
      */
     public void executeCommand(String key){
         Command command = commands.get(key);
+
         if (command != null){
             command.execute();
         }
