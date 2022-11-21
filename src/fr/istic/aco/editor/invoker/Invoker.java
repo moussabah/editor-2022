@@ -1,10 +1,15 @@
-package fr.istic.aco.editor.Invoker;
+package fr.istic.aco.editor.invoker;
 
-import fr.istic.aco.editor.Command.Command;
+import fr.istic.aco.editor.command.Command;
+
+import java.io.InputStream;
 
 public interface Invoker {
     public String getText();
-    public void addCommands(String key, Command value);
-    public void executeCommand(String key);
+    public void addCommand(String key, Command value);
+    public void executeCommand();
+    public Integer getBeginIndex();
+    public Integer getEndIndex();
 
+    void setReadStream(InputStream inputStream);
 }

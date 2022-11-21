@@ -1,10 +1,9 @@
-package fr.istic.aco.editor.Client;
+package fr.istic.aco.editor.invoker;
 
 //Le receiver sera l'engine
 //NE PAS METTRE LES MSG D'ERREUR DANS SYSOUT
 
-import fr.istic.aco.editor.Command.Command;
-import fr.istic.aco.editor.Invoker.Invoker;
+import fr.istic.aco.editor.command.Command;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,9 +17,15 @@ public class Client implements Invoker {
 
     //List all the commands
     private Map<String,Command> commands = new HashMap<>();
+    private InputStream inputStream;
+    private BufferedReader bufferedReader;
 
     public String getText() {
-        this.text = inputReader();
+        try {
+            this.text = bufferedReader.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return text;
     }
 
@@ -29,19 +34,18 @@ public class Client implements Invoker {
      * @param key the key of the map couple
      * @param value the value corresponding to the key
      */
-    public void addCommands(String key, Command value){
+    public void addCommand(String key, Command value){
         commands.put(key, value);
     }
 
-    /** Find the value of a defined key in the HashMap
+    /** Execute a command if the list contains its key
      *
-     * @param key
      */
-    public void executeCommand(String key){
-        Command command = commands.get(key);
-
-        if (command != null){
-            command.execute();
+    public void executeCommand(){
+        //Provide the stream of the user
+        String key = getBufferReadline();
+        if (this.commands.containsKey(key)){
+            commands.get(key).execute();
         }
     }
 
@@ -49,16 +53,16 @@ public class Client implements Invoker {
      *
      * @return the entry stream of the user
      */
-    public String inputReader() {
-        InputStream inputStream = System.in;
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        String readValue = null;
+    public void setReadStream( InputStream inputStream) {
+        this.bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+    }
+
+    public String getBufferReadline() {
         try {
-            readValue = bufferedReader.readLine();
+            return bufferedReader.readLine();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return readValue;
     }
 
     /** To get index of the first element of the selection by the user
@@ -70,7 +74,7 @@ public class Client implements Invoker {
         do {
             System.out.println("Enter a positif value : ");
             //To convert the input stream of the user to Int
-            getBeginIndex = Integer.parseInt(this.inputReader());
+            getBeginIndex = Integer.parseInt(getBufferReadline());
         }
         while (getBeginIndex <0 || getBeginIndex> getText().length());
         return getBeginIndex;
@@ -84,9 +88,20 @@ public class Client implements Invoker {
         Integer getEndIndex;
         do {
             //To convert the input stream of the user to Int
-            getEndIndex = Integer.parseInt(this.inputReader());
+            getEndIndex = Integer.parseInt(getBufferReadline());
         }
         while(getEndIndex < this.getBeginIndex() || getEndIndex > getText().length());
         return getEndIndex;
     }
+
+    /**
+    @Override
+    public void setReadStream(InputStream inputStream) {
+        if(inputStream == null) {
+            throw new IllegalArgumentException("null inputStream");
+        }
+        this.inputStream = inputStream;
+        this.bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+    }
+*/
 }

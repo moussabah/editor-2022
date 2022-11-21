@@ -1,4 +1,4 @@
-package fr.istic.aco.editor.Command;
+package fr.istic.aco.editor.command;
 
 public interface Command {
     void execute();

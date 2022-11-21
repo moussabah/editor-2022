@@ -1,7 +1,7 @@
 package fr.istic.aco.editor.enginecore;
 
 /**
- * Main API for the text editing engine
+ * CommandConfigurator API for the text editing engine
  *
  * @author plouzeau
  * @version 1.0
