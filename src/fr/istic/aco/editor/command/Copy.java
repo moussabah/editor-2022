@@ -20,6 +20,7 @@ public class Copy implements Command{
      */
     @Override
     public void execute() {
+
         engine.copySelectedText();
     }
 }

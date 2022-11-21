@@ -81,7 +81,8 @@ public class SelectionImpl implements Selection {
     /**
      * Changes the value of the end index of the selection
      *
-     * @param endIndex@throws IndexOutOfBoundsException if the beginIndex is out of bounds
+     * @param endIndex
+     * @throws IndexOutOfBoundsException if the beginIndex is out of bounds
      */
     @Override
     public void setEndIndex(int endIndex) {

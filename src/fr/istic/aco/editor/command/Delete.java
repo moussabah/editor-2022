@@ -19,6 +19,7 @@ public class Delete implements Command {
      */
     @Override
     public void execute() {
-        engine.delete();
+        this.engine.delete();
+        System.out.println(this.engine.getBufferContents());
     }
 }

@@ -20,6 +20,9 @@ public class Client implements Invoker {
     private InputStream inputStream;
     private BufferedReader bufferedReader;
 
+    private int endIndex = 0;
+    private int beginIndex = 0;
+
     public String getText() {
         try {
             this.text = bufferedReader.readLine();
@@ -42,10 +45,13 @@ public class Client implements Invoker {
      *
      */
     public void executeCommand(){
-        //Provide the stream of the user
-        String key = getBufferReadline();
-        if (this.commands.containsKey(key)){
-            commands.get(key).execute();
+        System.out.println("Enter some command : ");
+        while (true){
+            //Provide the stream of the user
+            String key = getBufferReadline();
+            if (this.commands.containsKey(key)){
+                this.commands.get(key).execute();
+            }
         }
     }
 
@@ -54,6 +60,10 @@ public class Client implements Invoker {
      * @return the entry stream of the user
      */
     public void setReadStream( InputStream inputStream) {
+        if(inputStream == null) {
+            throw new IllegalArgumentException("null inputStream");
+        }
+        this.inputStream = inputStream;
         this.bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
     }
 
@@ -70,14 +80,13 @@ public class Client implements Invoker {
      * @return Integer: the index of the first element of the selection
      */
     public Integer getBeginIndex() {
-        Integer getBeginIndex;
         do {
-            System.out.println("Enter a positif value : ");
+            System.out.println("Enter a begin index : ");
             //To convert the input stream of the user to Int
-            getBeginIndex = Integer.parseInt(getBufferReadline());
+            beginIndex = Integer.parseInt(getBufferReadline());
         }
-        while (getBeginIndex <0 || getBeginIndex> getText().length());
-        return getBeginIndex;
+        while (beginIndex <0 || beginIndex > getText().length());
+        return beginIndex;
     }
 
     /** To get index of the first element of the selection by the user
@@ -85,23 +94,18 @@ public class Client implements Invoker {
      * @return Integer: the index of the last element of the selection
      */
     public Integer getEndIndex() {
-        Integer getEndIndex;
-        do {
+       /* /**do {
+            System.out.println("Enter an end index : ");
             //To convert the input stream of the user to Int
-            getEndIndex = Integer.parseInt(getBufferReadline());
-        }
-        while(getEndIndex < this.getBeginIndex() || getEndIndex > getText().length());
-        return getEndIndex;
+            endIndex = Integer.parseInt(getBufferReadline());
+            System.out.println("Cool");
+        } while(endIndex < this.beginIndex || endIndex > getText().length());
+        while(endIndex >= this.beginIndex && endIndex <= getText().length()){
+            System.out.println("Enter an end index : ");
+            endIndex = Integer.parseInt(getBufferReadline());
+        }*/
+       //
+        System.out.println("Enter an end index : ");
+        return endIndex = Integer.parseInt(getBufferReadline());
     }
-
-    /**
-    @Override
-    public void setReadStream(InputStream inputStream) {
-        if(inputStream == null) {
-            throw new IllegalArgumentException("null inputStream");
-        }
-        this.inputStream = inputStream;
-        this.bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-    }
-*/
 }

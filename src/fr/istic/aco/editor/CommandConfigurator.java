@@ -28,14 +28,14 @@ public class CommandConfigurator {
         configureCommands();
         invoker.executeCommand();
     }
-
     private void configureCommands() {
-        //Instansiate the concret Commands
-        invoker.addCommand("Insert", new Copy(receiver,invoker));
+        //Instanciate the concret Commands
+        invoker.addCommand("Insert", new Insert(receiver,invoker));
         invoker.addCommand("Copy", new Copy(receiver,invoker));
         invoker.addCommand("Cut", new Cut(receiver));
-        invoker.addCommand("Delete", new Copy(receiver,invoker));
-        invoker.addCommand("Paste", new Copy(receiver,invoker));
+        invoker.addCommand("Delete", new Delete(receiver));
+        invoker.addCommand("Paste", new Paste(receiver,invoker));
+        invoker.addCommand("Select", new MoveSelection(receiver,invoker));
 
         invoker.addCommand("Test", () -> System.err.println("Test : "+this.toString()));
     }

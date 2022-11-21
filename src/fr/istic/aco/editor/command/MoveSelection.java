@@ -21,5 +21,6 @@ public class MoveSelection implements Command {
     public void execute() {
         engine.getSelection().setEndIndex(invoker.getEndIndex());
         engine.getSelection().setBeginIndex(invoker.getBeginIndex());
+
     }
 }
