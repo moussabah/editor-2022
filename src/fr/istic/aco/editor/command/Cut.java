@@ -20,5 +20,6 @@ public class Cut implements Command {
     @Override
     public void execute() {
         engine.cutSelectedText();
+        System.out.println(this.engine.getBufferContents());
     }
 }
