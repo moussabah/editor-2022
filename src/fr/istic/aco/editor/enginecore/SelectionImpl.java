@@ -70,12 +70,12 @@ public class SelectionImpl implements Selection {
      */
     @Override
     public void setBeginIndex(int beginIndex) {
-        if (beginIndex<0 || beginIndex> endIndex )
-        {
-            throw  new IndexOutOfBoundsException();
+        if(beginIndex >= this.getBufferBeginIndex() && beginIndex <= this.getBufferEndIndex() ){
+            this.beginIndex = beginIndex;
         }
-
-        this.beginIndex = beginIndex;
+        else{
+            throw  new IndexOutOfBoundsException("Impossible to set begin index");
+        }
     }
 
     /**
@@ -86,10 +86,17 @@ public class SelectionImpl implements Selection {
      */
     @Override
     public void setEndIndex(int endIndex) {
-        if (endIndex<beginIndex  || endIndex> buffer.length() )
-        {
-            throw  new IndexOutOfBoundsException();
+        if (endIndex >= this.getBufferBeginIndex() && endIndex <= this.getBufferEndIndex() ){
+            if (endIndex < this.getBeginIndex()){
+                this.endIndex = getBeginIndex();
+                setBeginIndex(endIndex);
+            }
+            else {
+                this.endIndex = endIndex;
+            }
         }
-        this.endIndex = endIndex;
+        else{
+            throw  new IndexOutOfBoundsException("Impossible to set end index");
+        }
     }
 }

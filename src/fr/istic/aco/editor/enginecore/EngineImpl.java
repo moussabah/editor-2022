@@ -45,8 +45,8 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void cutSelectedText() {
-        copySelectedText();
-        delete();
+        this.copySelectedText();
+        this.delete();
     }
 
     /**
@@ -89,7 +89,6 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void delete() {
-        System.out.println("Appel");
         int begin = getSelection().getBeginIndex();
         int end = getSelection().getEndIndex();
         buffer.delete(begin, end);

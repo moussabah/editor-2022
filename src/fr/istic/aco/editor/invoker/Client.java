@@ -20,8 +20,8 @@ public class Client implements Invoker {
     private InputStream inputStream;
     private BufferedReader bufferedReader;
 
-    private int endIndex = 0;
-    private int beginIndex = 0;
+    private int endIndex;
+    private int beginIndex;
 
     public String getText() {
         try {
@@ -80,12 +80,9 @@ public class Client implements Invoker {
      * @return Integer: the index of the first element of the selection
      */
     public Integer getBeginIndex() {
-        do {
-            System.out.println("Enter a begin index : ");
-            //To convert the input stream of the user to Int
-            beginIndex = Integer.parseInt(getBufferReadline());
-        }
-        while (beginIndex <0 || beginIndex > getText().length());
+        System.out.println("Enter a begin index : ");
+        this.beginIndex = Integer.parseInt(getBufferReadline());
+        System.out.println("begin = " + beginIndex);
         return beginIndex;
     }
 
@@ -94,18 +91,9 @@ public class Client implements Invoker {
      * @return Integer: the index of the last element of the selection
      */
     public Integer getEndIndex() {
-       /* /**do {
-            System.out.println("Enter an end index : ");
-            //To convert the input stream of the user to Int
-            endIndex = Integer.parseInt(getBufferReadline());
-            System.out.println("Cool");
-        } while(endIndex < this.beginIndex || endIndex > getText().length());
-        while(endIndex >= this.beginIndex && endIndex <= getText().length()){
-            System.out.println("Enter an end index : ");
-            endIndex = Integer.parseInt(getBufferReadline());
-        }*/
-       //
         System.out.println("Enter an end index : ");
-        return endIndex = Integer.parseInt(getBufferReadline());
+        this.endIndex = Integer.parseInt(getBufferReadline());
+        System.out.println("end = " + endIndex);
+        return endIndex;
     }
 }
