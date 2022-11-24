@@ -12,4 +12,5 @@ public interface Invoker {
     public Integer getEndIndex();
 
     void setReadStream(InputStream inputStream);
+    public void displayCommands();
 }

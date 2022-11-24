@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Client implements Invoker {
@@ -45,7 +46,6 @@ public class Client implements Invoker {
      *
      */
     public void executeCommand(){
-        System.out.println("Enter some command : ");
         while (true){
             //Provide the stream of the user
             String key = getBufferReadline();
@@ -67,6 +67,9 @@ public class Client implements Invoker {
         this.bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
     }
 
+    /**
+     * @return the user's entry flow
+     */
     public String getBufferReadline() {
         try {
             return bufferedReader.readLine();
@@ -95,5 +98,16 @@ public class Client implements Invoker {
         this.endIndex = Integer.parseInt(getBufferReadline());
         System.out.println("end = " + endIndex);
         return endIndex;
+    }
+
+    /**
+     * Provide the key values of the commands
+     */
+    public void displayCommands(){
+        System.out.println("Enter some command among those:" );
+        for (String key: this.commands.keySet()) {
+            System.out.print( key + " ");
+        }
+        System.out.println();
     }
 }

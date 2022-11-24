@@ -37,6 +37,8 @@ public class CommandConfigurator {
         invoker.addCommand("Paste", new Paste(receiver,invoker));
         invoker.addCommand("Select", new MoveSelection(receiver,invoker));
 
+        invoker.displayCommands();
+
         invoker.addCommand("Test", () -> System.err.println("Test : "+this.toString()));
     }
 
