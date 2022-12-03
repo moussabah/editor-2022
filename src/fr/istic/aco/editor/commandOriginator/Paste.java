@@ -1,15 +1,16 @@
-package fr.istic.aco.editor.command;
+package fr.istic.aco.editor.commandOriginator;
 
+import fr.istic.aco.editor.command.Command;
 import fr.istic.aco.editor.invoker.Invoker;
 import fr.istic.aco.editor.enginecore.Engine;
 
-public class MoveSelection implements Command {
+public class Paste implements CommandOriginator {
     // The receiver
     private Engine engine;
     // The Invoker
     private Invoker invoker;
 
-    public MoveSelection(Engine engine, Invoker invoker) {
+    public Paste(Engine engine, Invoker invoker) {
         this.engine = engine;
         this.invoker = invoker;
     }
@@ -19,8 +20,7 @@ public class MoveSelection implements Command {
      */
     @Override
     public void execute() {
-        engine.getSelection().setBeginIndex(invoker.getBeginIndex());
-        engine.getSelection().setEndIndex(invoker.getEndIndex());
-
+        engine.pasteClipboard();
+        System.out.println(this.engine.getBufferContents());
     }
 }

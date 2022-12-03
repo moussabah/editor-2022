@@ -1,6 +1,6 @@
 package fr.istic.aco.editor;
 
-import fr.istic.aco.editor.command.*;
+import fr.istic.aco.editor.commandOriginator.*;
 import fr.istic.aco.editor.enginecore.Engine;
 import fr.istic.aco.editor.enginecore.EngineImpl;
 import fr.istic.aco.editor.invoker.Client;

@@ -1,16 +1,16 @@
-package fr.istic.aco.editor.command;
+package fr.istic.aco.editor.commandOriginator;
 
+import fr.istic.aco.editor.command.Command;
 import fr.istic.aco.editor.invoker.Invoker;
 import fr.istic.aco.editor.enginecore.Engine;
 
-public class Insert implements Command {
-
+public class MoveSelection implements CommandOriginator {
     // The receiver
     private Engine engine;
     // The Invoker
     private Invoker invoker;
 
-    public Insert(Engine engine, Invoker invoker) {
+    public MoveSelection(Engine engine, Invoker invoker) {
         this.engine = engine;
         this.invoker = invoker;
     }
@@ -20,8 +20,8 @@ public class Insert implements Command {
      */
     @Override
     public void execute() {
-        System.out.print("Inserer un message: ");
-        engine.insert(invoker.getText());
-        System.out.println(this.engine.getBufferContents());
+        engine.getSelection().setBeginIndex(invoker.getBeginIndex());
+        engine.getSelection().setEndIndex(invoker.getEndIndex());
+
     }
 }

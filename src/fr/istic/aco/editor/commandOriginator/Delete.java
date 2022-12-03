@@ -1,9 +1,10 @@
-package fr.istic.aco.editor.command;
+package fr.istic.aco.editor.commandOriginator;
 
+import fr.istic.aco.editor.command.Command;
 import fr.istic.aco.editor.invoker.Invoker;
 import fr.istic.aco.editor.enginecore.Engine;
 
-public class Delete implements Command {
+public class Delete implements CommandOriginator {
 
     // The receiver
     private Engine engine;
