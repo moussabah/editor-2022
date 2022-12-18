@@ -1,19 +1,19 @@
-package fr.istic.aco.editor.simpleCommand;
+package fr.istic.aco.editor.command;
 
 import fr.istic.aco.editor.command.Command;
 import fr.istic.aco.editor.recorder.Recorder;
 
-public class Replay implements Command {
+public class Stop implements Command {
 
     //The receiver
     private Recorder recorder;
 
-    public Replay(Recorder recorder ){
+    public Stop(Recorder recorder ){
         this.recorder = recorder;
     }
 
     @Override
     public void execute() {
-        this.recorder.replay();
+        this.recorder.stop();
     }
 }

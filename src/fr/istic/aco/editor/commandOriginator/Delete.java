@@ -1,18 +1,20 @@
 package fr.istic.aco.editor.commandOriginator;
 
-import fr.istic.aco.editor.command.Command;
-import fr.istic.aco.editor.invoker.Invoker;
 import fr.istic.aco.editor.enginecore.Engine;
+import fr.istic.aco.editor.memento.Memento;
+import fr.istic.aco.editor.recorder.Recorder;
+
+import java.util.Optional;
 
 public class Delete implements CommandOriginator {
 
     // The receiver
     private Engine engine;
-    // The Invoker
-    private Invoker invoker;
+    private Recorder recorder;
 
-    public Delete(Engine engine) {
+    public Delete(Engine engine, Recorder recorder) {
         this.engine = engine;
+        this.recorder = recorder;
     }
 
     /** The run method of the concrete command Delete
@@ -20,7 +22,19 @@ public class Delete implements CommandOriginator {
      */
     @Override
     public void execute() {
-        this.engine.delete();
+        if (this.recorder.isRecording()){
+            this.engine.delete();
+        }
+        this.recorder.save(this);
         System.out.println(this.engine.getBufferContents());
+    }
+
+    /* MEMENTO PART */
+    /**
+     * @return null if there's no memento used
+     */
+    @Override
+    public Optional<Memento> getMemento() {
+        return null;
     }
 }

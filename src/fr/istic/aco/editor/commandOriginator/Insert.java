@@ -3,17 +3,28 @@ package fr.istic.aco.editor.commandOriginator;
 import fr.istic.aco.editor.command.Command;
 import fr.istic.aco.editor.invoker.Invoker;
 import fr.istic.aco.editor.enginecore.Engine;
+import fr.istic.aco.editor.memento.InsertMemento;
+import fr.istic.aco.editor.memento.Memento;
+import fr.istic.aco.editor.originator.OriginatorMemento;
+import fr.istic.aco.editor.recorder.Recorder;
 
-public class Insert implements CommandOriginator {
+import java.util.Optional;
+
+public class Insert implements CommandOriginator, OriginatorMemento {
 
     // The receiver
     private Engine engine;
     // The Invoker
     private Invoker invoker;
 
-    public Insert(Engine engine, Invoker invoker) {
+    /* MEMENTO ADD */
+    private String text="";
+    private Recorder recorder;
+
+    public Insert(Engine engine, Invoker invoker, Recorder recorder) {
         this.engine = engine;
         this.invoker = invoker;
+        this.recorder = recorder;
     }
 
     /** The run method of the concrete command Insert
@@ -21,8 +32,23 @@ public class Insert implements CommandOriginator {
      */
     @Override
     public void execute() {
-        System.out.print("Inserer un message: ");
-        engine.insert(invoker.getText());
+        if (!this.recorder.isReplaying()) {
+            System.out.print("Inserer un message: ");
+            this.text = invoker.getText();
+        }
+        engine.insert(this.text);
+        this.recorder.save(this);       //not condition because we actually verify in the save method if the record is started
         System.out.println(this.engine.getBufferContents());
+    }
+
+    @Override
+    public Optional<Memento> getMemento() {
+        return Optional.of(new InsertMemento(text));
+    }
+
+    @Override
+    public void setMemento(Memento memento) {       //Only used for the replay
+        this.text = ((InsertMemento) memento).getText();    //Change the type of memento for more precise
+        invoker.setText(this.text);
     }
 }

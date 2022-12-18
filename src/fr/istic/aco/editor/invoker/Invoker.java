@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 public interface Invoker {
     public String getText();
+    void setText(String text);
     public void addCommand(String key, Command value);
     public void executeCommand();
     public Integer getBeginIndex();

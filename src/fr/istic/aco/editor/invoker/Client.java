@@ -1,8 +1,5 @@
 package fr.istic.aco.editor.invoker;
 
-//Le receiver sera l'engine
-//NE PAS METTRE LES MSG D'ERREUR DANS SYSOUT
-
 import fr.istic.aco.editor.command.Command;
 
 import java.io.BufferedReader;
@@ -10,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class Client implements Invoker {
@@ -18,7 +14,6 @@ public class Client implements Invoker {
 
     //List all the commands
     private Map<String,Command> commands = new HashMap<>();
-    private InputStream inputStream;
     private BufferedReader bufferedReader;
 
     private int endIndex;
@@ -26,11 +21,16 @@ public class Client implements Invoker {
 
     public String getText() {
         try {
-            this.text = bufferedReader.readLine();
+            this.text = this.bufferedReader.readLine();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return text;
+    }
+
+    @Override
+    public void setText(String text) {
+        this.text = text;
     }
 
     /** Add a couple of key-value to the Hashmap
@@ -63,7 +63,6 @@ public class Client implements Invoker {
         if(inputStream == null) {
             throw new IllegalArgumentException("null inputStream");
         }
-        this.inputStream = inputStream;
         this.bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
     }
 
@@ -72,7 +71,7 @@ public class Client implements Invoker {
      */
     public String getBufferReadline() {
         try {
-            return bufferedReader.readLine();
+            return this.bufferedReader.readLine();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

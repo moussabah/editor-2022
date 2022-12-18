@@ -1,32 +1,58 @@
 package fr.istic.aco.editor.recorder;
 
-import fr.istic.aco.editor.command.Command;
+import fr.istic.aco.editor.commandOriginator.CommandOriginator;
+import fr.istic.aco.editor.memento.Memento;
+import fr.istic.aco.editor.memento.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Recorder {
 
-    private boolean stateRecorder;
-    private List<Command> commands;
+    /*At the application launch there are no recording or replaying */
+    private boolean isRecording=false;
+    private boolean isReplaying = false;
 
-    public void save(Command command){
-        if (this.stateRecorder == true){
-            commands.add(command);
+    //The list of all the commands
+    private List< Pair<CommandOriginator, Optional<Memento>> > storeCommands = new ArrayList<>();
+
+    public void save(CommandOriginator commandOriginator){
+
+        if (this.isRecording()){ // If we start the recording
+            Optional<Memento> memento = commandOriginator.getMemento();
+            this.storeCommands.add(new Pair<>(commandOriginator, memento));
+            System.out.println();
+            this.stop();
         }
     }
 
+    /* To launch the save */
     public void start(){
-        this.stateRecorder = true;
+        this.isRecording = true;
     }
 
     public void stop(){
-        this.stateRecorder = false;
+        this.isRecording = false;
     }
 
+    /** Launch the replay of the saved data commands */
     public void replay(){
         this.stop();
+        this.isReplaying = true;
+        System.out.println("Replaying started...");
+        //Each command of the pair list is executed
+        storeCommands.forEach( cmdMem-> cmdMem.getKey().execute());
+        /*
         for (Command command:this.commands) {
             command.execute();
-        }
+        }   */
     }
+
+    /*Getters*/
+    public boolean isRecording() {
+        return this.isRecording;
+    }
+
+    public boolean isReplaying() {  return isReplaying; }
 }
