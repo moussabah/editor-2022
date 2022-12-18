@@ -1,6 +1,5 @@
 package fr.istic.aco.editor.commandOriginator;
 
-import fr.istic.aco.editor.command.Command;
 import fr.istic.aco.editor.invoker.Invoker;
 import fr.istic.aco.editor.enginecore.Engine;
 import fr.istic.aco.editor.memento.InsertMemento;
@@ -37,7 +36,7 @@ public class Insert implements CommandOriginator, OriginatorMemento {
             this.text = invoker.getText();
         }
         engine.insert(this.text);
-        this.recorder.save(this);       //not condition because we actually verify in the save method if the record is started
+        this.recorder.save(this);//not condition because we actually verify in the save method if the record is started
         System.out.println(this.engine.getBufferContents());
     }
 
