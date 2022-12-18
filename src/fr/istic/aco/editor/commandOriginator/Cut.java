@@ -22,7 +22,7 @@ public class Cut implements CommandOriginator {
      */
     @Override
     public void execute() {
-        if (this.recorder.isRecording()){
+        if (!this.recorder.isReplaying()){
             this.engine.cutSelectedText();
         }
         this.recorder.save(this);

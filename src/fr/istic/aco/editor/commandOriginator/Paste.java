@@ -21,7 +21,7 @@ public class Paste implements CommandOriginator {
      */
     @Override
     public void execute() {
-        if (this.recorder.isRecording()) {
+        if (!this.recorder.isReplaying()) {
             this.engine.pasteClipboard();
         }
         this.recorder.save(this);

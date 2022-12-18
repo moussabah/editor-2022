@@ -22,7 +22,7 @@ public class Copy implements CommandOriginator {
      */
     @Override
     public void execute() {
-        if (this.recorder.isRecording()){
+        if (!this.recorder.isReplaying()){
             this.engine.copySelectedText();
         }
         this.recorder.save(this);

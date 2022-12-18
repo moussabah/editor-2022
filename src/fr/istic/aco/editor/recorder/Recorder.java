@@ -42,7 +42,15 @@ public class Recorder {
         this.isReplaying = true;
         System.out.println("Replaying started...");
         //Each command of the pair list is executed
-        storeCommands.forEach( cmdMem-> cmdMem.getKey().execute());
+        storeCommands.forEach( cmdMem-> {
+            CommandOriginator key = cmdMem.getKey();
+
+            //Seuls les Insert et Selection ont le setMemento ? Comment faire ?
+
+            Optional<Memento> value = cmdMem.getValue();
+
+            key.execute();
+        });
         /*
         for (Command command:this.commands) {
             command.execute();

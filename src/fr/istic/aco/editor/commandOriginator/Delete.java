@@ -22,7 +22,7 @@ public class Delete implements CommandOriginator {
      */
     @Override
     public void execute() {
-        if (this.recorder.isRecording()){
+        if (!this.recorder.isReplaying()){
             this.engine.delete();
         }
         this.recorder.save(this);

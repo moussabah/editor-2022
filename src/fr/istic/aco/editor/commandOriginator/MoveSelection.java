@@ -30,7 +30,7 @@ public class MoveSelection implements CommandOriginator, OriginatorMemento {
      */
     @Override
     public void execute() {
-        if (this.recorder.isRecording()){
+        if (!this.recorder.isReplaying()){
             this.beginIndex = invoker.getBeginIndex();
             this.endIndex = invoker.getEndIndex();
         }
