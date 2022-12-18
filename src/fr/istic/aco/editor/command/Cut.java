@@ -7,8 +7,6 @@ public class Cut implements Command {
 
     // The receiver
     private Engine engine;
-    // The Invoker
-    private Invoker invoker;
 
     public Cut(Engine engine){
         this.engine = engine;

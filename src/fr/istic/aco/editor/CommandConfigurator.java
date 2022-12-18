@@ -31,10 +31,10 @@ public class CommandConfigurator {
     private void configureCommands() {
         //Instanciate the concret Commands
         invoker.addCommand("Insert", new Insert(receiver,invoker));
-        invoker.addCommand("Copy", new Copy(receiver,invoker));
+        invoker.addCommand("Copy", new Copy(receiver));
         invoker.addCommand("Cut", new Cut(receiver));
         invoker.addCommand("Delete", new Delete(receiver));
-        invoker.addCommand("Paste", new Paste(receiver,invoker));
+        invoker.addCommand("Paste", new Paste(receiver));
         invoker.addCommand("Select", new MoveSelection(receiver,invoker));
 
         invoker.displayCommands();

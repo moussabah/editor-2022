@@ -7,12 +7,9 @@ public class Copy implements Command{
 
     // The receiver
     private Engine engine;
-    // The Invoker
-    private Invoker invoker;
 
-    public Copy(Engine engine, Invoker invoker){
+    public Copy(Engine engine){
         this.engine = engine;
-        this.invoker = invoker;
     }
 
     /** The run method of the concrete command Copy

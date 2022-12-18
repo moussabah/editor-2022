@@ -6,12 +6,10 @@ import fr.istic.aco.editor.enginecore.Engine;
 public class Paste implements Command{
     // The receiver
     private Engine engine;
-    // The Invoker
-    private Invoker invoker;
 
-    public Paste(Engine engine, Invoker invoker) {
+
+    public Paste(Engine engine) {
         this.engine = engine;
-        this.invoker = invoker;
     }
 
     /** The run method of the concrete command Insert

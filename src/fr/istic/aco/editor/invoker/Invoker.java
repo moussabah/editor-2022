@@ -13,4 +13,5 @@ public interface Invoker {
 
     void setReadStream(InputStream inputStream);
     public void displayCommands();
+    void setText(String text);
 }
