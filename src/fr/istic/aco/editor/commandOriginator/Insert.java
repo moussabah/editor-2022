@@ -32,12 +32,12 @@ public class Insert implements CommandOriginator, Originator {
     @Override
     public void execute() {
         if (!this.recorder.isReplaying()) {
-            System.out.print("Inserer un message: ");
+            System.out.print("Insert some text: ");
             this.text = invoker.getText();
         }
         engine.insert(this.text);
         this.recorder.save(this);//not condition because we actually verify in the save method if the record is started
-        System.out.println(this.engine.getBufferContents());
+
     }
 
     @Override

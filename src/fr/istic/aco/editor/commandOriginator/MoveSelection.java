@@ -50,6 +50,5 @@ public class MoveSelection implements CommandOriginator, Originator {
         //Dans le memento on va changer la selection du memento par les entrees du user
         this.beginIndex = ((SelectionMemento) memento).getBeginIndex();
         this.endIndex = ((SelectionMemento) memento).getEndIndex();
-
     }
 }

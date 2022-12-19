@@ -65,7 +65,6 @@ public class SelectionImpl implements Selection {
 
     /**
      * Changes the value of the begin index of the selection
-     *
      * @param beginIndex@throws IndexOutOfBoundsException if the beginIndex is out of bounds
      */
     @Override

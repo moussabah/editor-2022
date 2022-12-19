@@ -1,8 +1,6 @@
 package fr.istic.aco.editor;
 
-import fr.istic.aco.editor.command.Replay;
-import fr.istic.aco.editor.command.Start;
-import fr.istic.aco.editor.command.Stop;
+import fr.istic.aco.editor.command.*;
 import fr.istic.aco.editor.commandOriginator.*;
 import fr.istic.aco.editor.enginecore.Engine;
 import fr.istic.aco.editor.enginecore.EngineImpl;
@@ -49,6 +47,7 @@ public class CommandConfigurator {
         invoker.addCommand("Replay", new Replay(recorder));
         invoker.addCommand("Start", new Start(recorder));
         invoker.addCommand("Stop", new Stop(recorder));
+        invoker.addCommand("Buffer", new ShowBuffer(receiver));
 
         invoker.displayCommands();
 

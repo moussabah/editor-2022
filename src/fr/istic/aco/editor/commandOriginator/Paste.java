@@ -21,11 +21,10 @@ public class Paste implements CommandOriginator {
      */
     @Override
     public void execute() {
-        if (!this.recorder.isReplaying()) {
-            this.engine.pasteClipboard();
-        }
+        this.engine.pasteClipboard();
+
         this.recorder.save(this);
-        System.out.println(this.engine.getBufferContents());
+
     }
 
     /* MEMENTO PART */
@@ -34,7 +33,7 @@ public class Paste implements CommandOriginator {
      */
     @Override
     public Optional<Memento> getMemento() {
-        return null;
+        return Optional.empty();
     }
 
     @Override

@@ -22,11 +22,10 @@ public class Delete implements CommandOriginator {
      */
     @Override
     public void execute() {
-        if (!this.recorder.isReplaying()){
-            this.engine.delete();
-        }
+        this.engine.delete();
+
         this.recorder.save(this);
-        System.out.println(this.engine.getBufferContents());
+
     }
 
     /* MEMENTO PART */
@@ -35,7 +34,7 @@ public class Delete implements CommandOriginator {
      */
     @Override
     public Optional<Memento> getMemento() {
-        return null;
+        return Optional.empty();
     }
     @Override
     public void setMemento(Memento memento) {}

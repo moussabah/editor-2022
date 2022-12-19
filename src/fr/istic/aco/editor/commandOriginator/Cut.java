@@ -22,11 +22,10 @@ public class Cut implements CommandOriginator {
      */
     @Override
     public void execute() {
-        if (!this.recorder.isReplaying()){
-            this.engine.cutSelectedText();
-        }
+        this.engine.cutSelectedText();
+
         this.recorder.save(this);
-        System.out.println(this.engine.getBufferContents());
+
     }
 
     /* MEMENTO PART */
@@ -35,7 +34,7 @@ public class Cut implements CommandOriginator {
      */
     @Override
     public Optional<Memento> getMemento() {
-        return null;
+        return Optional.empty();
     }
     @Override
     public void setMemento(Memento memento) {}

@@ -52,18 +52,74 @@ class ConcreteCommandTest {
 
 	@Test
 	void Initialisation() {
-		Selection selection = engine.getSelection();
+		Selection selection = this.engine.getSelection();
 
 		/*Initially the cursor of the start is the same to the end and its value is 0*/
 
 		assertEquals(0, selection.getBufferBeginIndex(), "At the start ?");
 		assertEquals(0, selection.getBeginIndex(), "At the start");
-		assertEquals("", engine.getBufferContents(), "The buffer must be empty at the start");
+		assertEquals("", this.engine.getBufferContents(), "The buffer must be empty at the start");
+
+		/* At the start of the system, there is no record and the save or the replay are not launched */
+
+		assertEquals(0,this.recorder.getSizeOfStoreCommands(), "No saved commands at the start");
+		assertEquals(false, this.recorder.isRecording(), "We haven't started to save yet");
+		assertEquals(false, this.recorder.isReplaying(), "We haven't started to replay yet");
+	}
+
+	/*#****************************************  SAVE AND STOP  *************************************/
+	@Test
+	void SaveAndStopTest(){
+		invoker.executeCommand("Start");
+		assertEquals(true, this.recorder.isRecording(),
+				"The save command update the value of the predicate 'isRecording' to true");
+		assertEquals(false, this.recorder.isReplaying(), "The 'isReplaying' predicate is remain unchanged");
+		invoker.executeCommand("Stop");
+		assertEquals(false, this.recorder.isRecording(),
+				"The value of the predicate 'isRecording' changed to false");
+		assertEquals(false, this.recorder.isReplaying());
+	}
+
+	/*#****************************************  SAVE AND STOP  *************************************/
+	@Test
+	@DisplayName("Replay the inserted text")
+	void ReplayInsertTextTest(){
+		invoker.executeCommand("Start");
+		assertEquals(true, this.recorder.isRecording());
+
+		setReadStream(text);
+		invoker.executeCommand("Insert");
+
+		invoker.executeCommand("Stop");
+		assertEquals(false, this.recorder.isRecording());
+		assertEquals(text, this.engine.getBufferContents(), "The text have been stored in the buffer");
+
+		invoker.executeCommand("Replay");
+		assertEquals(text+text, this.engine.getBufferContents());
+	}
+
+	@Test
+	void ReplayTest(){
+		setReadStream(text);
+		invoker.executeCommand("Insert");
+		assertEquals(text, this.engine.getBufferContents(), text + " have been stored in the buffer");
+
+		invoker.executeCommand("Start");
+		assertEquals(true, this.recorder.isRecording());
+
+		setReadStream("0\n14");
+		invoker.executeCommand("Select");
+		invoker.executeCommand("Delete");
+		assertEquals("Tintin and Milou", this.engine.getBufferContents());
+
+		invoker.executeCommand("Stop");
+		invoker.executeCommand("Replay");
+		assertEquals("ou", this.engine.getBufferContents());
 	}
 
 	/*#****************************************  INSERTION   *************************************/
 
-	// Insert an empty string
+	// Insert an empty string -->  IS NOT WORKING
 	@Test
 	@DisplayName("Empty String")
 	void EmptyInsertTest(){
@@ -111,12 +167,12 @@ class ConcreteCommandTest {
 		setReadStream(text);
 		invoker.executeCommand("Insert");
 		setReadStream(text);
-		setReadStream("0\n10");
+		setReadStream("0\n11");
 		invoker.executeCommand("Select");
 		invoker.executeCommand("Cut");
-		assertEquals("Adventures", engine.getClipboardContents(),
+		assertEquals("Adventures ", engine.getClipboardContents(),
 				"The cut of the selected text have been stored in the clipboard");
-		assertEquals(text, engine.getBufferContents(),
+		assertEquals( "of Tintin and Milou", engine.getBufferContents(),
 				"Buffer content has remain the same");
 	}
 

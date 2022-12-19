@@ -1,10 +1,13 @@
 package fr.istic.aco.editor.recorder;
 
 import fr.istic.aco.editor.commandOriginator.CommandOriginator;
+import fr.istic.aco.editor.commandOriginator.Insert;
+import fr.istic.aco.editor.commandOriginator.MoveSelection;
 import fr.istic.aco.editor.memento.Memento;
 import fr.istic.aco.editor.memento.Pair;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,23 +27,21 @@ public class Recorder {
         if (this.isRecording()){ // If we start the recording
             Optional<Memento> memento = commandOriginator.getMemento();
             this.storeCommands.add(new Pair<>(commandOriginator, memento));
-            System.out.println();
-            this.stop();
         }
     }
 
-    /** To launch the save */
+    /** Trigger the save */
     public void start(){
         System.out.println("Save start...");
         this.isRecording = true;
+        this.storeCommands.clear();
     }
-    /** To stop the save */
+    /** Finish the save */
     public void stop(){
         this.isRecording = false;
-        System.out.println("...Finish to save");
     }
 
-    /** Launch the replay of the saved data commands */
+    /** Trigger the replay of the saved data commands */
     public void replay(){
         this.stop();
         this.isReplaying = true;
@@ -48,23 +49,24 @@ public class Recorder {
         //Each command of the pair list is executed
         storeCommands.forEach( cmdMem-> {
             CommandOriginator key = cmdMem.getKey();
-
-            //Seuls les Insert et Selection ont le setMemento ? Comment faire ?
-
+            //Only the Insert and Selection have the setMemento
             Optional<Memento> value = cmdMem.getValue();
-            key.setMemento(value.get());
+            if (value.isPresent()){
+                key.setMemento(value.get());
+            }
             key.execute();
         });
-        /*
-        for (Command command:this.commands) {
-            command.execute();
-        }   */
+        this.isReplaying = false;
     }
 
-    /*Getters*/
+    /* Getters */
     public boolean isRecording() {
         return this.isRecording;
     }
 
     public boolean isReplaying() {  return isReplaying; }
+
+    public int getSizeOfStoreCommands(){
+        return this.storeCommands.size();
+    }
 }

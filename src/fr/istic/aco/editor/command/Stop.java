@@ -15,5 +15,6 @@ public class Stop implements Command {
     @Override
     public void execute() {
         this.recorder.stop();
+        System.out.println("...Finish to save");
     }
 }

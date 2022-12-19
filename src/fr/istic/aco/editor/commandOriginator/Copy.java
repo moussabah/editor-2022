@@ -22,11 +22,8 @@ public class Copy implements CommandOriginator {
      */
     @Override
     public void execute() {
-        if (!this.recorder.isReplaying()){
-            this.engine.copySelectedText();
-        }
+        this.engine.copySelectedText();
         this.recorder.save(this);
-        System.out.println(this.engine.getBufferContents());
     }
 
     /* MEMENTO PART */
@@ -35,7 +32,7 @@ public class Copy implements CommandOriginator {
      */
     @Override
     public Optional<Memento> getMemento() {
-        return null;
+        return Optional.empty();
     }
 
     @Override
