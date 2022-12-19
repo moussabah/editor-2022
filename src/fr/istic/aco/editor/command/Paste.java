@@ -1,12 +1,9 @@
 package fr.istic.aco.editor.command;
-
-import fr.istic.aco.editor.invoker.Invoker;
 import fr.istic.aco.editor.enginecore.Engine;
 
 public class Paste implements Command{
     // The receiver
     private Engine engine;
-
 
     public Paste(Engine engine) {
         this.engine = engine;
@@ -17,7 +14,7 @@ public class Paste implements Command{
      */
     @Override
     public void execute() {
-        engine.pasteClipboard();
+        this.engine.pasteClipboard();
         System.out.println(this.engine.getBufferContents());
     }
 }

@@ -30,7 +30,7 @@ class ConcreteCommandTest {
 		engine = new EngineImpl();
 		invoker = new Client();
 
-		// initialisation des concr�tes commandes
+		/* Concrete commands initialisation */
 		invoker.addCommand("Copy", new Copy(engine));
 		invoker.addCommand("Cut", new Cut(engine));
 		invoker.addCommand("Delete", new Delete(engine));
@@ -52,7 +52,32 @@ class ConcreteCommandTest {
 		assertEquals("", engine.getBufferContents(), "The buffer must be empty at the start");
 	}
 
+	/*#****************************************  INSERTION   *************************************/
+
+	// Insert an empty string
 	@Test
+	@DisplayName("Empty String")
+	void EmptyInsertTest(){
+		setReadStream(" ");
+		invoker.executeCommand("Insert");
+		assertEquals(" ", engine.getBufferContents());
+	}
+
+	@Test
+	@DisplayName("Adventures of Tintin and Milou")
+	void InsertTest() {
+		Selection selection = engine.getSelection();
+		setReadStream(text);
+		invoker.executeCommand("Insert");
+		assertEquals(0, selection.getBufferBeginIndex());
+		assertEquals(30, selection.getBeginIndex(), "The cursor must be just after the last element of the insertion");
+		assertEquals(text, engine.getBufferContents(), "The text have been stored in the buffer");
+	}
+
+	/*#****************************************  COPY   *************************************/
+
+	@Test
+	@DisplayName("Copy of 'Adventures'")
 	void CopyTextTest() {
 		setReadStream(text);
 		invoker.executeCommand("Insert");
@@ -69,7 +94,10 @@ class ConcreteCommandTest {
 		assertEquals(text, engine.getBufferContents(), "Buffer content has remain the same");
 	}
 
+	/*#****************************************  CUT   *************************************/
+
 	@Test
+	@DisplayName("Cut 'Adventures' from Adventures of Tintin and Milou ")
 	void CutTextTest() {
 		setReadStream(text);
 		invoker.executeCommand("Insert");
@@ -83,7 +111,10 @@ class ConcreteCommandTest {
 				"Buffer content has remain the same");
 	}
 
+	/*#****************************************  DELETE   *************************************/
+
 	@Test
+	@DisplayName("Remove ' and Tintin' from Adventures of Tintin and Milou")
 	void DeleteTest() {
 		setReadStream(text);
 		invoker.executeCommand("Insert");
@@ -96,26 +127,10 @@ class ConcreteCommandTest {
 				"' Milou' have been erased from the buffer");
 	}
 
-	/*
-	 Insert an empty string
-	@Test
-	void EmptyInsertTest(){
-		setReadStream("");
-		invoker.executeCommand("Insert");
-		assertEquals("", engine.getBufferContents());
-	}
-*/
-	@Test
-	void InsertTest() {
-		Selection selection = engine.getSelection();
-		setReadStream(text);
-		invoker.executeCommand("Insert");
-		assertEquals(0, selection.getBufferBeginIndex());
-		assertEquals(30, selection.getBeginIndex(), "The cursor must be just after the last element of the insertion");
-		assertEquals(text, engine.getBufferContents(), "The text have been stored in the buffer");
-	}
+	/*#****************************************  PASTE   *************************************/
 
 	@Test
+	@DisplayName("Reverse 'Tintin' and 'Milou' from Adventures of Tintin and Milou")
 	void PasteTest() {
 		setReadStream(text);
 		invoker.executeCommand("Insert");

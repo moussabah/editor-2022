@@ -20,7 +20,7 @@ public class Insert implements Command {
      */
     @Override
     public void execute() {
-        System.out.print("Inserer un message: ");
+        System.out.print("Insert some text : ");
         engine.insert(invoker.getText());
         System.out.println(this.engine.getBufferContents());
     }

@@ -1,6 +1,4 @@
 package fr.istic.aco.editor.command;
-
-import fr.istic.aco.editor.invoker.Invoker;
 import fr.istic.aco.editor.enginecore.Engine;
 
 public class Cut implements Command {
