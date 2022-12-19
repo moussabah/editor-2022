@@ -27,11 +27,11 @@ public class Client implements Invoker {
      */
     public String getText() {
         try {
-            this.text = bufferedReader.readLine();
+            this.text = this.bufferedReader.readLine();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return text;
+        return this.text;
     }
 
     public void setText(String text) {

@@ -79,7 +79,7 @@ public class EngineImpl implements Engine {
     public void insert(String s) {
         int begin = getSelection().getBeginIndex();
         int end = getSelection().getEndIndex();
-        buffer.replace(begin, end, s);  //Pb: Si y a rien a cet endroit.
+        buffer.replace(begin, end, s);
         selection.setEndIndex(begin+s.length());
         selection.setBeginIndex(selection.getEndIndex());
     }
