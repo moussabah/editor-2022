@@ -8,7 +8,7 @@ public interface Invoker {
     public String getText();
     void setText(String text);
     public void addCommand(String key, Command value);
-    public void executeCommand();
+    public void executeCommand(String key);
     public Integer getBeginIndex();
     public Integer getEndIndex();
 

@@ -31,9 +31,12 @@ public class CommandConfigurator {
         this.receiver = new EngineImpl();
         this.recorder = new Recorder();
 
-        invoker.setReadStream(System.in);
         configureCommands();
-        invoker.executeCommand();
+        while(true) {
+            invoker.setReadStream(System.in);
+            String key = invoker.getText();
+            invoker.executeCommand(key);
+        }
     }
     private void configureCommands() {
         //Instanciate the concret Commands

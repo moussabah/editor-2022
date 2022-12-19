@@ -37,4 +37,8 @@ public class Paste implements CommandOriginator {
         return null;
     }
 
+    @Override
+    /**BAD SMEll but no find other way */
+    public void setMemento(Memento memento) {}
+
 }

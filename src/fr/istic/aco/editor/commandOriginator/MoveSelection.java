@@ -4,12 +4,12 @@ import fr.istic.aco.editor.invoker.Invoker;
 import fr.istic.aco.editor.enginecore.Engine;
 import fr.istic.aco.editor.memento.Memento;
 import fr.istic.aco.editor.memento.SelectionMemento;
-import fr.istic.aco.editor.originator.OriginatorMemento;
+import fr.istic.aco.editor.originator.Originator;
 import fr.istic.aco.editor.recorder.Recorder;
 
 import java.util.Optional;
 
-public class MoveSelection implements CommandOriginator, OriginatorMemento {
+public class MoveSelection implements CommandOriginator, Originator {
     // The receiver
     private Engine engine;
     // The Invoker

@@ -42,17 +42,14 @@ public class Client implements Invoker {
         commands.put(key, value);
     }
 
-    /** Execute a command if the list contains its key
-     *
+    /** Execute a giving command
+     * @param key the command to execute
      */
-    public void executeCommand(){
-        while (true){
-            //Provide the stream of the user
-            String key = getBufferReadline();
-            if (this.commands.containsKey(key)){
-                this.commands.get(key).execute();
-            }
+    public void executeCommand(String key){
+        if (this.commands.containsKey(key)){
+            this.commands.get(key).execute();
         }
+        //}
     }
 
     /** Provide the input stream of the user as a String

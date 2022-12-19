@@ -37,4 +37,6 @@ public class Cut implements CommandOriginator {
     public Optional<Memento> getMemento() {
         return null;
     }
+    @Override
+    public void setMemento(Memento memento) {}
 }
