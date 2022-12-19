@@ -20,6 +20,6 @@ public class Delete implements Command {
     @Override
     public void execute() {
         this.engine.delete();
-        System.out.println(this.engine.getBufferContents());
+        System.out.println("Buffer: " + this.engine.getBufferContents());
     }
 }

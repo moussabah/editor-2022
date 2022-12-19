@@ -22,6 +22,6 @@ public class Insert implements Command {
     public void execute() {
         System.out.print("Insert some text : ");
         engine.insert(invoker.getText());
-        System.out.println(this.engine.getBufferContents());
+        System.out.println("Buffer: " + this.engine.getBufferContents());
     }
 }

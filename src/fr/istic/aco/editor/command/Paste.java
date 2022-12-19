@@ -15,6 +15,6 @@ public class Paste implements Command{
     @Override
     public void execute() {
         this.engine.pasteClipboard();
-        System.out.println(this.engine.getBufferContents());
+        System.out.println("Buffer: " + this.engine.getBufferContents());
     }
 }
