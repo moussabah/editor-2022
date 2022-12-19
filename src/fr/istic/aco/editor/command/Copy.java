@@ -18,6 +18,7 @@ public class Copy implements Command{
     @Override
     public void execute() {
         engine.copySelectedText();
+        System.out.println("Clipboard :" + this.engine.getClipboardContents());
         System.out.println(this.engine.getBufferContents());
     }
 }

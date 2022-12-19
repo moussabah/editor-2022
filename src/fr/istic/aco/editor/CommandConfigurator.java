@@ -14,19 +14,22 @@ public class CommandConfigurator {
    private Engine receiver;
 
    public static void main(String lineArgs[]) {
-
-      CommandConfigurator client = new CommandConfigurator();
-      client.run();
-
+       CommandConfigurator client = new CommandConfigurator();
+       client.run();
    }
    
     private void run() {
         Logger.getGlobal().info("Starting...");
         this.invoker = new Client();
         this.receiver = new EngineImpl();
-        invoker.setReadStream(System.in);
+
         configureCommands();
-        invoker.executeCommand();
+
+        while(true) {
+            invoker.setReadStream(System.in);
+            String key = invoker.getText();
+            invoker.executeCommand(key);
+        }
     }
     private void configureCommands() {
         //Instanciate the concret Commands

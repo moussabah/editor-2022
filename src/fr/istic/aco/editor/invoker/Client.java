@@ -22,6 +22,9 @@ public class Client implements Invoker {
     private int endIndex;
     private int beginIndex;
 
+    /** Provide the input stream of the user as a String
+     * @return the user's entry flow
+     */
     public String getText() {
         try {
             this.text = bufferedReader.readLine();
@@ -32,7 +35,6 @@ public class Client implements Invoker {
     }
 
     public void setText(String text) {
-
         this.text = text;
     }
 
@@ -45,22 +47,19 @@ public class Client implements Invoker {
         commands.put(key, value);
     }
 
-    /** Execute a command if the list contains its key
-     *
-     */
-    public void executeCommand(){
-        while (true){
+    /** Execute a command if the list contains its key */
+    public void executeCommand(String key){
+        //while (true){
             //Provide the stream of the user
-            String key = getBufferReadline();
+            //String key = getText();
             if (this.commands.containsKey(key)){
                 this.commands.get(key).execute();
             }
-        }
+        //}
     }
 
-    /** Provide the input stream of the user as a String
-     *
-     * @return the entry stream of the user
+    /**
+     * @param inputStream the input stream of the user
      */
     public void setReadStream( InputStream inputStream) {
         if(inputStream == null) {
@@ -69,16 +68,6 @@ public class Client implements Invoker {
         this.bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
     }
 
-    /**
-     * @return the user's entry flow
-     */
-    public String getBufferReadline() {
-        try {
-            return bufferedReader.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     /** To get index of the first element of the selection by the user
      *
@@ -86,7 +75,7 @@ public class Client implements Invoker {
      */
     public Integer getBeginIndex() {
         System.out.println("Enter a begin index : ");
-        this.beginIndex = Integer.parseInt(getBufferReadline());
+        this.beginIndex = Integer.parseInt(getText());
         System.out.println("begin = " + beginIndex);
         return beginIndex;
     }
@@ -97,7 +86,7 @@ public class Client implements Invoker {
      */
     public Integer getEndIndex() {
         System.out.println("Enter an end index : ");
-        this.endIndex = Integer.parseInt(getBufferReadline());
+        this.endIndex = Integer.parseInt(getText());
         System.out.println("end = " + endIndex);
         return endIndex;
     }
