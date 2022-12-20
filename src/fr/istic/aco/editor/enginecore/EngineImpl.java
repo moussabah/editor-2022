@@ -4,9 +4,8 @@ public class EngineImpl implements Engine {
 
     // The buffer
     private StringBuilder buffer = new StringBuilder();
-
     private String clipboard="";
-    private Selection selection = new SelectionImpl(buffer);    //ask for question if it's correct
+    private Selection selection = new SelectionImpl(buffer);
 
     /**
      * Provides access to the selection control object

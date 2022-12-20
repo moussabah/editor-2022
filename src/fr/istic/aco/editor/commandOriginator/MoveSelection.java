@@ -9,6 +9,9 @@ import fr.istic.aco.editor.recorder.Recorder;
 
 import java.util.Optional;
 
+/**
+ * Provide an executable command named MoveSelection
+ */
 public class MoveSelection implements CommandOriginator, Originator {
     // The receiver
     private Engine engine;
@@ -25,8 +28,9 @@ public class MoveSelection implements CommandOriginator, Originator {
         this.beginIndex = this.endIndex = 0;
     }
 
-    /** The run method of the concrete command Insert
-     *  Apply the Insert method to the user's(invoker) selection
+    /** Command to Set the cursor's Selection
+     *
+     * Execute this command
      */
     @Override
     public void execute() {
@@ -40,14 +44,25 @@ public class MoveSelection implements CommandOriginator, Originator {
     }
 
     /* Memento part */
+
+    /** Provide a memento with the information of this command
+     *
+     * @return the memento with the information
+     */
     @Override
     public Optional<Memento> getMemento() {
         return Optional.of(new SelectionMemento(this.beginIndex, this.endIndex));
     }
 
+    /** Given a memento, set the surrounding elements with the information contained inside the memento.
+     *
+     * @param memento the memento with the information.
+     */
     @Override
     public void setMemento(Memento memento) {
-        //Dans le memento on va changer la selection du memento par les entrees du user
+
+        //We will set the current selection by the new ones given by the memento
+
         this.beginIndex = ((SelectionMemento) memento).getBeginIndex();
         this.endIndex = ((SelectionMemento) memento).getEndIndex();
     }

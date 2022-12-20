@@ -6,6 +6,9 @@ import fr.istic.aco.editor.recorder.Recorder;
 
 import java.util.Optional;
 
+/**
+ * Provide an executable command named Paste
+ */
 public class Paste implements CommandOriginator {
     // The receiver
     private Engine engine;
@@ -16,8 +19,10 @@ public class Paste implements CommandOriginator {
         this.recorder = recorder;
     }
 
-    /** The run method of the concrete command Insert
-     *  Apply the Insert method to the user's(invoker) selection
+    /** Insert the content of the clipboard
+     * into the actual cursor selection of the buffer
+     *
+     * Execute this command
      */
     @Override
     public void execute() {
@@ -37,7 +42,10 @@ public class Paste implements CommandOriginator {
     }
 
     @Override
-    /**BAD SMEll but no find other way */
-    public void setMemento(Memento memento) {}
+    public void setMemento(Memento memento) {
+        //Its empty because this command has use of the memento so no parameter to set.
+
+        //It's a bad smell but no find an alternative
+    }
 
 }

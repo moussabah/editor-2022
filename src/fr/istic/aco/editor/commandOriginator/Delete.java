@@ -6,26 +6,34 @@ import fr.istic.aco.editor.recorder.Recorder;
 
 import java.util.Optional;
 
+/**
+ * Provide an executable Command named Delete
+ */
+
 public class Delete implements CommandOriginator {
 
     // The receiver
     private Engine engine;
     private Recorder recorder;
 
+    /** To suppress the selection from the buffer
+     *
+     * @param engine the new engine
+     * @param recorder the new recorder
+     */
     public Delete(Engine engine, Recorder recorder) {
         this.engine = engine;
         this.recorder = recorder;
     }
 
-    /** The run method of the concrete command Delete
-     * Apply the Delete method to the user's(invoker) selection
+    /** Remove the Selection from the Buffer
+     *
+     * Execute this command
      */
     @Override
     public void execute() {
         this.engine.delete();
-
         this.recorder.save(this);
-
     }
 
     /* MEMENTO PART */
@@ -37,5 +45,9 @@ public class Delete implements CommandOriginator {
         return Optional.empty();
     }
     @Override
-    public void setMemento(Memento memento) {}
+    public void setMemento(Memento memento) {
+        //Its empty because this command has use of the memento so no parameter to set.
+
+        //It's a bad smell but no find an alternative
+    }
 }

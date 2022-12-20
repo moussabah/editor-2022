@@ -1,4 +1,7 @@
 package fr.istic.aco.editor.memento;
 
-public interface Memento {
-}
+/**
+ * To regroup all the memento
+ */
+
+public interface Memento { }

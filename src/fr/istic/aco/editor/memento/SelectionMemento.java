@@ -1,5 +1,8 @@
 package fr.istic.aco.editor.memento;
 
+/**
+ * Memento to change the cursor of the selection
+ */
 public class SelectionMemento implements Memento{
 
     private int beginIndex, endIndex;
@@ -9,19 +12,20 @@ public class SelectionMemento implements Memento{
         this.endIndex = endIndex;
     }
 
+    /** Provides the index of the first character in the selection
+     *
+     * @return An int Value
+     */
     public int getBeginIndex() {
         return beginIndex;
     }
 
+    /** Provides the index of the first "virtual" character after the selection
+     *
+     * @return An int Value
+     */
     public int getEndIndex() {
         return endIndex;
     }
 
-    public void setBeginIndex(int beginIndex) {
-        this.beginIndex = beginIndex;
-    }
-
-    public void setEndIndex(int endIndex) {
-        this.endIndex = endIndex;
-    }
 }

@@ -42,7 +42,8 @@ public class Client implements Invoker {
         commands.put(key, value);
     }
 
-    /** Execute a giving command
+    /** Execute a given command
+     *
      * @param key the command to execute
      */
     public void executeCommand(String key){
@@ -74,10 +75,7 @@ public class Client implements Invoker {
         }
     }
 
-    /** To get index of the first element of the selection by the user
-     *
-     * @return Integer: the index of the first element of the selection
-     */
+    @Override
     public Integer getBeginIndex() {
         System.out.println("Enter a begin index : ");
         this.beginIndex = Integer.parseInt(getBufferReadline());
@@ -85,10 +83,7 @@ public class Client implements Invoker {
         return beginIndex;
     }
 
-    /** To get index of the first element of the selection by the user
-     *
-     * @return Integer: the index of the last element of the selection
-     */
+    @Override
     public Integer getEndIndex() {
         System.out.println("Enter an end index : ");
         this.endIndex = Integer.parseInt(getBufferReadline());

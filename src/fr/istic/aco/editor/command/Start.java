@@ -1,7 +1,9 @@
 package fr.istic.aco.editor.command;
-
-import fr.istic.aco.editor.command.Command;
 import fr.istic.aco.editor.recorder.Recorder;
+
+/**
+ * Trigger the record
+ */
 
 public class Start implements Command {
 

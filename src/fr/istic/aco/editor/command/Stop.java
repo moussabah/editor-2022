@@ -1,7 +1,9 @@
 package fr.istic.aco.editor.command;
-
-import fr.istic.aco.editor.command.Command;
 import fr.istic.aco.editor.recorder.Recorder;
+
+/**
+ * End the Record
+ */
 
 public class Stop implements Command {
 

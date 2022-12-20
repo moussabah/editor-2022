@@ -12,7 +12,7 @@ public interface Selection {
      * Provides the index of the first character designated
      * by the selection.
      *
-     * @return
+     * @return An int value
      */
      int getBeginIndex();
 
@@ -21,14 +21,14 @@ public interface Selection {
      * after the last character designated
      * by the selection.
      *
-     * @return the end index
+     * @return the last int on the selection
      */
     int getEndIndex();
 
     /**
      * Provides the index of the first character in the buffer
      *
-     * @return the buffer's begin index
+     * @return An int value
      */
     int getBufferBeginIndex();
 
@@ -41,7 +41,7 @@ public interface Selection {
     int getBufferEndIndex();
 
     /**
-     * Changes the value of the begin index of the selection
+     * Changes the value of the beginning index of the selection
      *
      * @param beginIndex, must be within the buffer index range
      * @throws IndexOutOfBoundsException if the beginIndex is out of bounds
