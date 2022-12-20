@@ -9,6 +9,9 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Implement the Invoker's interface
+ */
 public class Client implements Invoker {
     private String text = "";
 

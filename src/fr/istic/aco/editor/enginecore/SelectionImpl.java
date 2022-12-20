@@ -1,5 +1,8 @@
 package fr.istic.aco.editor.enginecore;
 
+/**
+ * Implement the Selection interface
+ */
 public class SelectionImpl implements Selection {
 
     private StringBuilder buffer;

@@ -1,5 +1,8 @@
 package fr.istic.aco.editor.enginecore;
 
+/**
+ * Implement the Engine interface
+ */
 public class EngineImpl implements Engine {
 
     // The buffer

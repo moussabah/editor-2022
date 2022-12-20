@@ -10,6 +10,9 @@ import fr.istic.aco.editor.recorder.Recorder;
 
 import java.util.logging.Logger;
 
+/**
+ * Configure all commands to be used for the demo
+ */
 public class CommandConfigurator {
 
    private Invoker invoker;
@@ -44,6 +47,7 @@ public class CommandConfigurator {
         invoker.addCommand("Delete", new Delete(receiver, recorder));
         invoker.addCommand("Paste", new Paste(receiver,recorder));
         invoker.addCommand("Select", new MoveSelection(receiver,invoker, recorder));
+
         invoker.addCommand("Replay", new Replay(recorder));
         invoker.addCommand("Start", new Start(recorder));
         invoker.addCommand("Stop", new Stop(recorder));
